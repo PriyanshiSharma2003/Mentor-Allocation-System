@@ -41,9 +41,13 @@
             padding: 10px 20px;
             text-align: center;
         }
-        table {
-            width: 80%;
+        .container {
+            width: 90%;
             margin: 20px auto;
+        }
+        table {
+            width: 100%;
+            margin: 20px 0;
             border-collapse: collapse;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -69,18 +73,78 @@
         .remove-button:hover {
             opacity: 0.8;
         }
+        .announcement-board {
+            background: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .announcement-board h2 {
+            margin-bottom: 20px;
+        }
+        .announcement-board form {
+            margin-bottom: 20px;
+        }
+        .announcement-board textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .announcement-board select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .announcement-board button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .announcement-board button:hover {
+            opacity: 0.8;
+        }
+        .popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+            padding: 10px;
+            display: none;
+            z-index: 1000;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .popup img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Welcome, <%= mentorName %>!</h1>
         <form action="LogoutServlet" method="post" style="display:inline;">
-    <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 10px 15px; cursor: pointer;">
-        Logout
-    </button>
-</form>
+            <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 10px 15px; cursor: pointer;">
+                Logout
+            </button>
+        </form>
+        <!-- Chat Icon -->
+        <a href="chat.jsp" title="Chat" style="margin-left: 15px; font-size: 24px; color: white;">
+            <i class="fas fa-comments"></i>
+        </a>
+        
     </header>
-    <main>
+    <div class="container">
         <h2 style="text-align: center;">Your Students</h2>
         <table>
             <thead>
@@ -97,9 +161,9 @@
                     for (Student student : students) { %>
                         <tr>
                             <td><%= student.getName() %></td>
-                            <td><%= student.getBranch() %></td>
+                            <td><%= student.getCourse() %></td>
                             <td><%= student.getSemester() %></td>
-                            <td><%= student.getEmail() %></td>
+                            <td><a href="mailto:<%= student.getEmail() %>"><%= student.getEmail() %></a></td>
                             <td>
                                 <form action="RemoveStudentServlet" method="post" style="display:inline;">
                                     <input type="hidden" name="studentId" value="<%= student.getEmail() %>">
@@ -115,6 +179,58 @@
                 <% } %>
             </tbody>
         </table>
-    </main>
+
+        <div class="announcement-board">
+            <h2>Announcement Board</h2>
+            <form action="PostAnnouncementServlet" method="post">
+                <textarea name="announcement" rows="4" placeholder="Enter your announcement here..." required></textarea>
+                <select name="branch" required>
+                    <option value="all">All Branches</option>
+                    <% 
+                    List<String> branches = null;
+                    try {
+                        branches = userDAO.getBranches();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if (branches != null && !branches.isEmpty()) {
+                        for (String branch : branches) {
+                    %>
+                        <option value="<%= branch %>"><%= branch %></option>
+                    <% 
+                        }
+                    }
+                    %>
+                </select>
+                <button type="submit">Post Announcement</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Popup for successful announcement -->
+    <div id="successPopup" class="popup" style="display: none;">
+        <img src="images/Tick.jpg" alt="Success" />
+        Announcement Posted Successfully!
+    </div>
+
+    <script>
+        // Check if the popup should be shown
+        document.addEventListener("DOMContentLoaded", function() {
+            <% 
+            Boolean showPopup = (Boolean) session.getAttribute("showPopup");
+            if (showPopup != null && showPopup) { 
+            %>
+                var popup = document.getElementById("successPopup");
+                popup.style.display = "block"; // Show popup
+                setTimeout(function() {
+                    popup.style.display = "none"; // Hide popup after 3 seconds
+                }, 3000);
+            <%
+                session.removeAttribute("showPopup"); // Remove the session attribute
+            }
+            %>
+        });
+    </script>
 </body>
-</html> 
+</html>
