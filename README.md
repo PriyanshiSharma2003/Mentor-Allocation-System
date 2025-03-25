@@ -41,10 +41,10 @@ Additionally, mentors can post announcements, either general or branch-specific,
 ![Register as a Student Page](https://github.com/user-attachments/assets/058dc4a7-e0e3-4d13-9d74-1c8d5b8d07e0)
 
 ### Mentor Dashboard
-![Mentor Dashboard](https://github.com/user-attachments/assets/951dff2b-1cef-48c2-90dd-8be73fceee2b)
+![MentorDashboard](https://github.com/user-attachments/assets/7ade79bc-04b2-4231-88d5-9729e41e9a47)
 
 ### Mentee Dashboard when Mentor is Already Selected
-![Mentee Dashboard when Mentor Already Selected](https://github.com/user-attachments/assets/1773a5d6-b4dc-43f3-ae48-71d544a445b3)
+![StudentDashboard](https://github.com/user-attachments/assets/cc31a067-312a-425c-bf89-0eb754f9856d)
 
 ### Mentee Dashboard when Mentor is Not Selected
-![Mentee Dashboard when Mentor Not Selected](https://github.com/user-attachments/assets/e4a7756b-a087-421e-8ede-2daae485fca8)
+![StudentDashboard1](https://github.com/user-attachments/assets/401078dc-7ea6-4375-ade8-8a4bff4c577e)
