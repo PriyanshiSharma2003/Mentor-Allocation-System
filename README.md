@@ -1,8 +1,9 @@
 # Mentor-Allocation-System
 
 <p align="justify">
-The Mentor Allocation System is a simple platform that allows mentees to choose and manage their mentors. Mentees can log in, select a mentor, change their selection if needed, and save their choice if the mentor is still available. Mentors can log in to view and organize mentees by course, branch, and specialization, and they also have the option to remove a mentee if necessary. One mentor can have a maximum of 20 mentees under him/her. When a mentor exceeds this limit, their name will not be shown in the available mentors list.  
-
+The Mentor Allocation System is a simple platform that allows mentees to choose and manage their mentors. Mentees can log in, select a mentor, change their selection if needed, and save their choice if the mentor is still available. Mentors can log in to view and organize mentees by course, branch, and specialization, and they also have the option to remove a mentee if necessary. One mentor can have a maximum of 20 mentees under him/her. When a mentor exceeds this limit, their name will not be shown in the available mentors list. 
+</p>
+<p align="justify">
 Additionally, mentors can post announcements, either general or branch-specific, to keep mentees informed. The history of these announcements will be maintained on the student dashboard for easy reference. Furthermore, mentors can send emails directly to their assigned mentees from their dashboard, with a built-in redirection feature for quick access to further actions. This system simplifies mentor selection, communication, and management.
 </p>
 
